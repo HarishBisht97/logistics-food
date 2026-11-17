@@ -1,0 +1,1762 @@
+[
+ {
+  "id": 0,
+  "cat": "Soups",
+  "sub": "Vegetarian — Indian",
+  "name": "Tomato Soup",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 1,
+  "cat": "Soups",
+  "sub": "Vegetarian — Indian",
+  "name": "Cream Soup (Veg / Mushroom)",
+  "price": 105.0,
+  "veg": true
+ },
+ {
+  "id": 2,
+  "cat": "Soups",
+  "sub": "Vegetarian — Indian",
+  "name": "Spinach Soup",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 3,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Burnt Garlic Soup",
+  "price": 120.75,
+  "veg": true
+ },
+ {
+  "id": 4,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Clear Soup",
+  "price": 105.0,
+  "veg": true
+ },
+ {
+  "id": 5,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Noodle Soup",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 6,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Lemon Coriander Soup",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 7,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Hot-N-Sour Soup",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 8,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Manchow / Sweet Corn Soup",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 9,
+  "cat": "Soups",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "French Onion Soup",
+  "price": 120.75,
+  "veg": true
+ },
+ {
+  "id": 10,
+  "cat": "Soups",
+  "sub": "Non-Vegetarian",
+  "name": "Cream of Chicken Soup",
+  "price": 173.25,
+  "veg": false
+ },
+ {
+  "id": 11,
+  "cat": "Soups",
+  "sub": "Non-Vegetarian",
+  "name": "Chicken Lemon Coriander Soup",
+  "price": 173.25,
+  "veg": false
+ },
+ {
+  "id": 12,
+  "cat": "Soups",
+  "sub": "Non-Vegetarian",
+  "name": "Chicken Talu-Mien Soup",
+  "price": 178.5,
+  "veg": false
+ },
+ {
+  "id": 13,
+  "cat": "Soups",
+  "sub": "Non-Vegetarian",
+  "name": "Chicken Manchow / Sweet Corn Soup",
+  "price": 168.0,
+  "veg": false
+ },
+ {
+  "id": 14,
+  "cat": "Soups",
+  "sub": "Non-Vegetarian",
+  "name": "Chicken Hot-n-Sour Soup",
+  "price": 168.0,
+  "veg": false
+ },
+ {
+  "id": 15,
+  "cat": "Soups",
+  "sub": "Non-Vegetarian",
+  "name": "Prawns Tom Yum Soup",
+  "price": 189.0,
+  "veg": false
+ },
+ {
+  "id": 16,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Bhindi Rajasthani",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 17,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Hara Bhara Kabab",
+  "price": 173.25,
+  "veg": true
+ },
+ {
+  "id": 18,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Chilly and Cheese Broccoli",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 19,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Ajwaini Paneer",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 20,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Paneer Tikka (Pudina / Reshmi / Lasooni)",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 21,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Paneer Zaffrani Tikka",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 22,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Paneer Till Tikka",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 23,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Paneer Sheekh Kabab",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 24,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Paneer Kurkure",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 25,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Veg Platter",
+  "price": 341.25,
+  "veg": true
+ },
+ {
+  "id": 26,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Tandoori Mushroom",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 27,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Corn Tikki",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 28,
+  "cat": "Starters",
+  "sub": "Vegetarian — Indian & Tandoor",
+  "name": "Kaju Methi Roll",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 29,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Crispy",
+  "price": 183.75,
+  "veg": true
+ },
+ {
+  "id": 30,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Babycorn Crispy",
+  "price": 225.75,
+  "veg": true
+ },
+ {
+  "id": 31,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Paneer Dry (Schezwan / Manchurian / Chilly)",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 32,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Manchurian (Dry)",
+  "price": 194.25,
+  "veg": true
+ },
+ {
+  "id": 33,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Spring Roll",
+  "price": 189.0,
+  "veg": true
+ },
+ {
+  "id": 34,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Dragon Roll",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 35,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Kung Pao",
+  "price": 194.25,
+  "veg": true
+ },
+ {
+  "id": 36,
+  "cat": "Starters",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Corn Cheese Boll",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 37,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Tandoori Chicken (Half)",
+  "price": 262.5,
+  "veg": false
+ },
+ {
+  "id": 38,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Tandoori Chicken (Full)",
+  "price": 472.5,
+  "veg": false
+ },
+ {
+  "id": 39,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Grill Chicken Arabic Style (Half)",
+  "price": 288.75,
+  "veg": false
+ },
+ {
+  "id": 40,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Grill Chicken Arabic Style (Full)",
+  "price": 525.0,
+  "veg": false
+ },
+ {
+  "id": 41,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Shikampoor Seekh",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 42,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Murgh Seekh Kabab",
+  "price": 325.5,
+  "veg": false
+ },
+ {
+  "id": 43,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Murgh Tikka",
+  "price": 320.25,
+  "veg": false
+ },
+ {
+  "id": 44,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Murgh Pahadi Tikka",
+  "price": 325.5,
+  "veg": false
+ },
+ {
+  "id": 45,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Murgh Reshmi Tikka",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 46,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Reshmi Tangdi Mumtaz (2 pc)",
+  "price": 367.5,
+  "veg": false
+ },
+ {
+  "id": 47,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Murgh Siya Tikka",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 48,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Chicken Pepper Fry",
+  "price": 346.5,
+  "veg": false
+ },
+ {
+  "id": 49,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Char Grilled Prawns Lasooni",
+  "price": 519.75,
+  "veg": false
+ },
+ {
+  "id": 50,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Prawns Koliwada",
+  "price": 519.75,
+  "veg": false
+ },
+ {
+  "id": 51,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Tandoori Prawns",
+  "price": 519.75,
+  "veg": false
+ },
+ {
+  "id": 52,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Rawas Tikka",
+  "price": 477.75,
+  "veg": false
+ },
+ {
+  "id": 53,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Rawas Tawa Fry",
+  "price": 477.75,
+  "veg": false
+ },
+ {
+  "id": 54,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Rawas Koliwada",
+  "price": 477.75,
+  "veg": false
+ },
+ {
+  "id": 55,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Tandoori Pomfret",
+  "price": 708.75,
+  "veg": false
+ },
+ {
+  "id": 56,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Pomfret Tawa Fry",
+  "price": 708.75,
+  "veg": false
+ },
+ {
+  "id": 57,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Indian & Tandoor",
+  "name": "Non-Veg Platter",
+  "price": 577.5,
+  "veg": false
+ },
+ {
+  "id": 58,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken Salt-n-Pepper",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 59,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Kung Pao Chicken",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 60,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken Lollypop",
+  "price": 288.75,
+  "veg": false
+ },
+ {
+  "id": 61,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Fish in Red Schezwan Pepper Sauce",
+  "price": 477.75,
+  "veg": false
+ },
+ {
+  "id": 62,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Fish in Butter Garlic Basil Sauce",
+  "price": 477.75,
+  "veg": false
+ },
+ {
+  "id": 63,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Prawns Garlic Basil Chilly",
+  "price": 519.75,
+  "veg": false
+ },
+ {
+  "id": 64,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Crispy Chicken",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 65,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken China Town",
+  "price": 320.25,
+  "veg": false
+ },
+ {
+  "id": 66,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Drum Steak Heaven",
+  "price": 288.75,
+  "veg": false
+ },
+ {
+  "id": 67,
+  "cat": "Starters",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken Spring Roll",
+  "price": 315.0,
+  "veg": false
+ },
+ {
+  "id": 68,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Tikka Masala",
+  "price": 252.0,
+  "veg": true
+ },
+ {
+  "id": 69,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Makhmali",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 70,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Palak",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 71,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Makhani",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 72,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Kadhai Mushroom",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 73,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Jalfrezi",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 74,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Mushroom Makai",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 75,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Chole Amritsari",
+  "price": 183.75,
+  "veg": true
+ },
+ {
+  "id": 76,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Diwani Handi",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 77,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Kadhai",
+  "price": 189.0,
+  "veg": true
+ },
+ {
+  "id": 78,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Handi",
+  "price": 189.0,
+  "veg": true
+ },
+ {
+  "id": 79,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Tawa",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 80,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Kolhapuri",
+  "price": 178.5,
+  "veg": true
+ },
+ {
+  "id": 81,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Khurchan",
+  "price": 236.25,
+  "veg": true
+ },
+ {
+  "id": 82,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Amritsari",
+  "price": 236.25,
+  "veg": true
+ },
+ {
+  "id": 83,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Paneer Handi",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 84,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Aloo (Jeera / Gobi / Methi)",
+  "price": 168.0,
+  "veg": true
+ },
+ {
+  "id": 85,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Methi Chuka Jaipuri",
+  "price": 231.0,
+  "veg": true
+ },
+ {
+  "id": 86,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Methi Mutter Malai",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 87,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Bhindi Do Pyaza",
+  "price": 183.75,
+  "veg": true
+ },
+ {
+  "id": 88,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Nargis Kofta Curry",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 89,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Veg Kofta Curry",
+  "price": 199.5,
+  "veg": true
+ },
+ {
+  "id": 90,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Indian",
+  "name": "Bhindi Fry",
+  "price": 178.5,
+  "veg": true
+ },
+ {
+  "id": 91,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Veg Manchurian / Chilly / Schezwan",
+  "price": 194.25,
+  "veg": true
+ },
+ {
+  "id": 92,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Cottage Cheese in Black Bean Sauce",
+  "price": 225.75,
+  "veg": true
+ },
+ {
+  "id": 93,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Cottage Cheese in Hunan Sauce",
+  "price": 225.75,
+  "veg": true
+ },
+ {
+  "id": 94,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Paneer Manchurian / Chilly / Schezwan",
+  "price": 220.5,
+  "veg": true
+ },
+ {
+  "id": 95,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Mushroom Manchurian / Chilly / Schezwan",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 96,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Homemade Thai Curry (Red / Green)",
+  "price": 225.75,
+  "veg": true
+ },
+ {
+  "id": 97,
+  "cat": "Main Course",
+  "sub": "Vegetarian — Pan Asian",
+  "name": "Exotic Vegetables in Chilly Garlic Sauce",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 98,
+  "cat": "Main Course",
+  "sub": "Vegetarian — International",
+  "name": "Veg Florentine",
+  "price": 283.5,
+  "veg": true
+ },
+ {
+  "id": 99,
+  "cat": "Main Course",
+  "sub": "Vegetarian — International",
+  "name": "Veg Au Gratin",
+  "price": 283.5,
+  "veg": true
+ },
+ {
+  "id": 100,
+  "cat": "Main Course",
+  "sub": "Vegetarian — International",
+  "name": "Veg Pasta",
+  "price": 288.75,
+  "veg": true
+ },
+ {
+  "id": 101,
+  "cat": "Main Course",
+  "sub": "Vegetarian — International",
+  "name": "Veg Lazania",
+  "price": 288.75,
+  "veg": true
+ },
+ {
+  "id": 102,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Lagan ka Murgh",
+  "price": 372.75,
+  "veg": false
+ },
+ {
+  "id": 103,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Chicken Tikka Kabab Masala",
+  "price": 372.75,
+  "veg": false
+ },
+ {
+  "id": 104,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Chicken Pahadi Kabab Masala",
+  "price": 372.75,
+  "veg": false
+ },
+ {
+  "id": 105,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Chicken Gassi Curry",
+  "price": 362.25,
+  "veg": false
+ },
+ {
+  "id": 106,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Chicken Goan Curry",
+  "price": 362.25,
+  "veg": false
+ },
+ {
+  "id": 107,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Murgh Makhanwala",
+  "price": 362.25,
+  "veg": false
+ },
+ {
+  "id": 108,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Bhuna Pyaz Ka Murgh",
+  "price": 362.25,
+  "veg": false
+ },
+ {
+  "id": 109,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Crunchy Murgh",
+  "price": 383.25,
+  "veg": false
+ },
+ {
+  "id": 110,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Murgh with Bone (Kadhai / Handi / Kolhapuri / Balty)",
+  "price": 346.5,
+  "veg": false
+ },
+ {
+  "id": 111,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Egg (Masala / Kadhai / Handi)",
+  "price": 199.5,
+  "veg": false
+ },
+ {
+  "id": 112,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Goan Prawns Curry",
+  "price": 519.75,
+  "veg": false
+ },
+ {
+  "id": 113,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Prawns Masala",
+  "price": 519.75,
+  "veg": false
+ },
+ {
+  "id": 114,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Rawas Masala",
+  "price": 477.75,
+  "veg": false
+ },
+ {
+  "id": 115,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Tawa Mutton",
+  "price": 467.25,
+  "veg": false
+ },
+ {
+  "id": 116,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Indian",
+  "name": "Mutton (Kadhai / Handi / Masala)",
+  "price": 446.25,
+  "veg": false
+ },
+ {
+  "id": 117,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken Thai Curry",
+  "price": 393.75,
+  "veg": false
+ },
+ {
+  "id": 118,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Stir Fried Ginger Chicken",
+  "price": 388.5,
+  "veg": false
+ },
+ {
+  "id": 119,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken & Mushroom in Oyster Sauce",
+  "price": 388.5,
+  "veg": false
+ },
+ {
+  "id": 120,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Chicken Gravy (Manchurian / Chilly / Schezwan)",
+  "price": 357.0,
+  "veg": false
+ },
+ {
+  "id": 121,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Soya Chilly and Garlic Fish",
+  "price": 467.25,
+  "veg": false
+ },
+ {
+  "id": 122,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Pomfret in Schezwan Pepper Sauce",
+  "price": 682.5,
+  "veg": false
+ },
+ {
+  "id": 123,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Thai Curry Prawns",
+  "price": 561.75,
+  "veg": false
+ },
+ {
+  "id": 124,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Burnt Garlic and Chilly Prawn",
+  "price": 561.75,
+  "veg": false
+ },
+ {
+  "id": 125,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — Pan Asian",
+  "name": "Butter Pepper Garlic Prawn",
+  "price": 561.75,
+  "veg": false
+ },
+ {
+  "id": 126,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — International",
+  "name": "Chicken Florentine",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 127,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — International",
+  "name": "Chicken Lazania",
+  "price": 346.5,
+  "veg": false
+ },
+ {
+  "id": 128,
+  "cat": "Main Course",
+  "sub": "Non-Vegetarian — International",
+  "name": "Chicken Stroganoff",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 129,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & Noodles — Pan Asian",
+  "name": "Fried Rice                    173.25    262.50",
+  "price": 372.75,
+  "veg": true
+ },
+ {
+  "id": 130,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & Noodles — Pan Asian",
+  "name": "Schezwan Fried Rice           183.75    267.75",
+  "price": 383.25,
+  "veg": true
+ },
+ {
+  "id": 131,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & Noodles — Pan Asian",
+  "name": "Hakka Noodles                 183.75    252.00",
+  "price": 383.25,
+  "veg": true
+ },
+ {
+  "id": 132,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & Noodles — Pan Asian",
+  "name": "Burnt Garlic Rice           194.25      278.25",
+  "price": 393.75,
+  "veg": true
+ },
+ {
+  "id": 133,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & Noodles — Pan Asian",
+  "name": "Schezwan Hakka Noodle       194.25      262.50",
+  "price": 393.75,
+  "veg": true
+ },
+ {
+  "id": 134,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Vegetarian",
+  "name": "Steamed Basmati Rice",
+  "price": 94.5,
+  "veg": true
+ },
+ {
+  "id": 135,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Vegetarian",
+  "name": "Dal Ki Khichdi",
+  "price": 136.5,
+  "veg": true
+ },
+ {
+  "id": 136,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Vegetarian",
+  "name": "Veg Dum Biryani",
+  "price": 168.0,
+  "veg": true
+ },
+ {
+  "id": 137,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Vegetarian",
+  "name": "Veg Biryani",
+  "price": 141.75,
+  "veg": true
+ },
+ {
+  "id": 138,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Vegetarian",
+  "name": "Jeera Rice",
+  "price": 110.25,
+  "veg": true
+ },
+ {
+  "id": 139,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Vegetarian",
+  "name": "Veg Pulao",
+  "price": 131.25,
+  "veg": true
+ },
+ {
+  "id": 140,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Non-Vegetarian",
+  "name": "Murgh Hara Masala Tikka Biryani",
+  "price": 346.5,
+  "veg": false
+ },
+ {
+  "id": 141,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Non-Vegetarian",
+  "name": "Murgh Biryani",
+  "price": 299.25,
+  "veg": false
+ },
+ {
+  "id": 142,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Non-Vegetarian",
+  "name": "Murgh Dum Biryani",
+  "price": 341.25,
+  "veg": false
+ },
+ {
+  "id": 143,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Non-Vegetarian",
+  "name": "Mutton Biryani",
+  "price": 467.25,
+  "veg": false
+ },
+ {
+  "id": 144,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Non-Vegetarian",
+  "name": "Prawns Biryani",
+  "price": 561.75,
+  "veg": false
+ },
+ {
+  "id": 145,
+  "cat": "Rice, Noodles & Breads",
+  "sub": "Rice & More — Non-Vegetarian",
+  "name": "Egg Biryani",
+  "price": 208.95,
+  "veg": false
+ },
+ {
+  "id": 146,
+  "cat": "Lentils",
+  "sub": "",
+  "name": "Dal Palak / Lasooni / Tadkewali",
+  "price": 141.75,
+  "veg": true
+ },
+ {
+  "id": 147,
+  "cat": "Lentils",
+  "sub": "",
+  "name": "Dal Makhani",
+  "price": 152.25,
+  "veg": true
+ },
+ {
+  "id": 148,
+  "cat": "Lentils",
+  "sub": "",
+  "name": "Dal Fry",
+  "price": 136.5,
+  "veg": true
+ },
+ {
+  "id": 149,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Lachhedar Paratha",
+  "price": 36.75,
+  "veg": true
+ },
+ {
+  "id": 150,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Butter Lachhedar Paratha",
+  "price": 44.1,
+  "veg": true
+ },
+ {
+  "id": 151,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Naan",
+  "price": 36.75,
+  "veg": true
+ },
+ {
+  "id": 152,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Butter Naan",
+  "price": 42.0,
+  "veg": true
+ },
+ {
+  "id": 153,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Garlic Naan",
+  "price": 69.3,
+  "veg": true
+ },
+ {
+  "id": 154,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Butter Garlic Naan",
+  "price": 74.55,
+  "veg": true
+ },
+ {
+  "id": 155,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Peshawari Naan",
+  "price": 144.9,
+  "veg": true
+ },
+ {
+  "id": 156,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Kabuli Naan",
+  "price": 138.6,
+  "veg": true
+ },
+ {
+  "id": 157,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Kheema Naan",
+  "price": 278.25,
+  "veg": true
+ },
+ {
+  "id": 158,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Kheema Paratha",
+  "price": 278.25,
+  "veg": true
+ },
+ {
+  "id": 159,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Stuff Paratha",
+  "price": 80.85,
+  "veg": true
+ },
+ {
+  "id": 160,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Cheese & Garlic Naan",
+  "price": 103.95,
+  "veg": true
+ },
+ {
+  "id": 161,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Khasta Roti",
+  "price": 44.1,
+  "veg": true
+ },
+ {
+  "id": 162,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Tandoori Roti",
+  "price": 21.0,
+  "veg": true
+ },
+ {
+  "id": 163,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Butter Roti",
+  "price": 27.3,
+  "veg": true
+ },
+ {
+  "id": 164,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Kulcha",
+  "price": 36.75,
+  "veg": true
+ },
+ {
+  "id": 165,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Butter Kulcha",
+  "price": 44.1,
+  "veg": true
+ },
+ {
+  "id": 166,
+  "cat": "Breads",
+  "sub": "",
+  "name": "Roti ki Tokri",
+  "price": 278.25,
+  "veg": true
+ },
+ {
+  "id": 167,
+  "cat": "Raita",
+  "sub": "",
+  "name": "Curd",
+  "price": 73.5,
+  "veg": true
+ },
+ {
+  "id": 168,
+  "cat": "Raita",
+  "sub": "",
+  "name": "Mix Veg Raita",
+  "price": 94.5,
+  "veg": true
+ },
+ {
+  "id": 169,
+  "cat": "Raita",
+  "sub": "",
+  "name": "Cucumber aur Tamatar ka Raita",
+  "price": 94.5,
+  "veg": true
+ },
+ {
+  "id": 170,
+  "cat": "Raita",
+  "sub": "",
+  "name": "Boondi aur Sev ka Raita",
+  "price": 99.75,
+  "veg": true
+ },
+ {
+  "id": 171,
+  "cat": "Raita",
+  "sub": "",
+  "name": "Pineapple Raita",
+  "price": 94.5,
+  "veg": true
+ },
+ {
+  "id": 172,
+  "cat": "Salad",
+  "sub": "",
+  "name": "Tossed Salad",
+  "price": 99.75,
+  "veg": true
+ },
+ {
+  "id": 173,
+  "cat": "Salad",
+  "sub": "",
+  "name": "Fresh Cut Green Stick Salad",
+  "price": 89.25,
+  "veg": true
+ },
+ {
+  "id": 174,
+  "cat": "Salad",
+  "sub": "",
+  "name": "Russian / Coleslaw Salad",
+  "price": 120.75,
+  "veg": true
+ },
+ {
+  "id": 175,
+  "cat": "Papadam",
+  "sub": "",
+  "name": "Roasted Papad",
+  "price": 28.35,
+  "veg": true
+ },
+ {
+  "id": 176,
+  "cat": "Papadam",
+  "sub": "",
+  "name": "Fried Papad",
+  "price": 33.6,
+  "veg": true
+ },
+ {
+  "id": 177,
+  "cat": "Papadam",
+  "sub": "",
+  "name": "Masala Papad",
+  "price": 47.25,
+  "veg": true
+ },
+ {
+  "id": 178,
+  "cat": "Papadam",
+  "sub": "",
+  "name": "Crispy Rumali Masala Papad",
+  "price": 84.0,
+  "veg": true
+ },
+ {
+  "id": 179,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Malai Kulfi with Falooda",
+  "price": 168.0,
+  "veg": true
+ },
+ {
+  "id": 180,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Malai Kulfi",
+  "price": 94.5,
+  "veg": true
+ },
+ {
+  "id": 181,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Anjeer Kulfi",
+  "price": 105.0,
+  "veg": true
+ },
+ {
+  "id": 182,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Mango Kulfi",
+  "price": 105.0,
+  "veg": true
+ },
+ {
+  "id": 183,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Kesar Pista Kulfi",
+  "price": 105.0,
+  "veg": true
+ },
+ {
+  "id": 184,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Special Falooda",
+  "price": 204.75,
+  "veg": true
+ },
+ {
+  "id": 185,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Caramel Custard",
+  "price": 168.0,
+  "veg": true
+ },
+ {
+  "id": 186,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Vanilla Ice-Cream",
+  "price": 126.0,
+  "veg": true
+ },
+ {
+  "id": 187,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Strawberry Ice-Cream",
+  "price": 126.0,
+  "veg": true
+ },
+ {
+  "id": 188,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Chocolate Ice-Cream",
+  "price": 136.5,
+  "veg": true
+ },
+ {
+  "id": 189,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Butter Scotch Ice-Cream",
+  "price": 147.0,
+  "veg": true
+ },
+ {
+  "id": 190,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Roasted Almond Ice-Cream",
+  "price": 157.5,
+  "veg": true
+ },
+ {
+  "id": 191,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Kesar Pista Ice-Cream",
+  "price": 147.0,
+  "veg": true
+ },
+ {
+  "id": 192,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Triple Sundae Ice-Cream",
+  "price": 225.75,
+  "veg": true
+ },
+ {
+  "id": 193,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Gulab Jamun",
+  "price": 94.5,
+  "veg": true
+ },
+ {
+  "id": 194,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Gulab Jamun with Ice-Cream",
+  "price": 126.0,
+  "veg": true
+ },
+ {
+  "id": 195,
+  "cat": "Desserts",
+  "sub": "",
+  "name": "Sizzling Brownie with Ice-Cream",
+  "price": 236.25,
+  "veg": true
+ },
+ {
+  "id": 196,
+  "cat": "Beverages",
+  "sub": "",
+  "name": "Lassi (Sweet / Salted)",
+  "price": 68.25,
+  "veg": true
+ },
+ {
+  "id": 197,
+  "cat": "Beverages",
+  "sub": "",
+  "name": "A'le (Chaas)",
+  "price": 52.5,
+  "veg": true
+ },
+ {
+  "id": 198,
+  "cat": "Beverages",
+  "sub": "",
+  "name": "Soft Drinks (300 ml)",
+  "price": 29.4,
+  "veg": true
+ },
+ {
+  "id": 199,
+  "cat": "Beverages",
+  "sub": "",
+  "name": "Mineral Water",
+  "price": 31.5,
+  "veg": true
+ },
+ {
+  "id": 200,
+  "cat": "Mocktails",
+  "sub": "",
+  "name": "Fruit Punch",
+  "price": 157.5,
+  "veg": true
+ },
+ {
+  "id": 201,
+  "cat": "Mocktails",
+  "sub": "",
+  "name": "Virgin Pinacolada",
+  "price": 157.5,
+  "veg": true
+ },
+ {
+  "id": 202,
+  "cat": "Mocktails",
+  "sub": "",
+  "name": "Blue Lagoon",
+  "price": 131.25,
+  "veg": true
+ },
+ {
+  "id": 203,
+  "cat": "Mocktails",
+  "sub": "",
+  "name": "Cinderella / Mickey Mouse",
+  "price": 152.25,
+  "veg": true
+ },
+ {
+  "id": 204,
+  "cat": "Mocktails",
+  "sub": "",
+  "name": "Green Cooler",
+  "price": 141.75,
+  "veg": true
+ },
+ {
+  "id": 205,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Vanilla Milkshake",
+  "price": 136.5,
+  "veg": true
+ },
+ {
+  "id": 206,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Strawberry Milkshake",
+  "price": 136.5,
+  "veg": true
+ },
+ {
+  "id": 207,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Chocolate Milkshake",
+  "price": 136.5,
+  "veg": true
+ },
+ {
+  "id": 208,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Mango Milkshake",
+  "price": 147.0,
+  "veg": true
+ },
+ {
+  "id": 209,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Butterscotch Milkshake",
+  "price": 147.0,
+  "veg": true
+ },
+ {
+  "id": 210,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Banana Milkshake",
+  "price": 115.5,
+  "veg": true
+ },
+ {
+  "id": 211,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Cold Coffee",
+  "price": 120.75,
+  "veg": true
+ },
+ {
+  "id": 212,
+  "cat": "Milkshakes",
+  "sub": "",
+  "name": "Cold Coffee with Ice Cream",
+  "price": 147.0,
+  "veg": true
+ },
+ {
+  "id": 213,
+  "cat": "Juices",
+  "sub": "",
+  "name": "Water Melon Juice",
+  "price": 84.0,
+  "veg": true
+ },
+ {
+  "id": 214,
+  "cat": "Juices",
+  "sub": "",
+  "name": "Pineapple Juice",
+  "price": 99.75,
+  "veg": true
+ },
+ {
+  "id": 215,
+  "cat": "Juices",
+  "sub": "",
+  "name": "Mosambi Juice",
+  "price": 84.0,
+  "veg": true
+ },
+ {
+  "id": 216,
+  "cat": "Beverages",
+  "sub": "Beverages",
+  "name": "Jal Jeera (Water)",
+  "price": 36.75,
+  "veg": true
+ },
+ {
+  "id": 217,
+  "cat": "Beverages",
+  "sub": "Beverages",
+  "name": "Jal Jeera (Soda)",
+  "price": 52.5,
+  "veg": true
+ },
+ {
+  "id": 218,
+  "cat": "Beverages",
+  "sub": "Beverages",
+  "name": "Fresh Lime (Water)",
+  "price": 36.75,
+  "veg": true
+ },
+ {
+  "id": 219,
+  "cat": "Beverages",
+  "sub": "Beverages",
+  "name": "Fresh Lime (Soda)",
+  "price": 52.5,
+  "veg": true
+ }
+]

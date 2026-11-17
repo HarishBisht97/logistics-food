@@ -1,0 +1,159 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Keep this email in sync with ADMIN_EMAILS in src/lib/constants.ts.
+    // Auth stores the address in lowercase.
+    function isAdmin() {
+      return signedIn()
+        && request.auth.token.email is string
+        && request.auth.token.email.lower() == "26m0307@iitb.ac.in";
+    }
+
+    function emailMatches() {
+      return request.auth.token.email is string
+        && request.resource.data.email is string
+        && request.resource.data.email.lower() == request.auth.token.email.lower();
+    }
+
+    // get() sees the database before this transaction. getAfter() sees the
+    // other documents written in the same transaction, which is required when
+    // a name claim or an order and its member pointer are saved together.
+    function claimAfter(name) {
+      return getAfter(/databases/$(database)/documents/claims/$(name));
+    }
+
+    function userPath() {
+      return /databases/$(database)/documents/users/$(request.auth.uid);
+    }
+
+    function hasName() {
+      return signedIn()
+        && exists(userPath())
+        && get(userPath()).data.name is string
+        && get(userPath()).data.name.size() > 0;
+    }
+
+    function userName() {
+      return get(userPath()).data.name;
+    }
+
+    function orderPath(date, id) {
+      return /databases/$(database)/documents/days/$(date)/orders/$(id);
+    }
+
+    function memberPath(date, name) {
+      return /databases/$(database)/documents/days/$(date)/members/$(name);
+    }
+
+    function validOrder(data) {
+      return data.keys().hasAll(["members", "items", "extras", "note", "placed", "placedAt"])
+        && data.members is list
+        && data.members.size() > 0
+        && data.items is map
+        && data.extras is map
+        && data.note is string
+        && data.placed is bool
+        && (data.placedAt == null || data.placedAt is number);
+    }
+
+    function sameMembers() {
+      return request.resource.data.members.hasAny([userName()])
+        && request.resource.data.members.hasAll(resource.data.members)
+        && resource.data.members.hasAll(request.resource.data.members);
+    }
+
+    // A member may remove only themselves, and must leave the dishes untouched.
+    function leavingSelf() {
+      return resource.data.members.hasAny([userName()])
+        && !(request.resource.data.members.hasAny([userName()]))
+        && request.resource.data.members.hasAll(resource.data.members.removeAll([userName()]))
+        && resource.data.members.removeAll([userName()]).hasAll(request.resource.data.members)
+        && request.resource.data.items == resource.data.items
+        && request.resource.data.extras == resource.data.extras
+        && request.resource.data.note == resource.data.note;
+    }
+
+    // Deleting someone else's solo order is allowed only when their member
+    // pointer now sits on an order that includes the writer and every old member.
+    function movedWithMe(date) {
+      return resource.data.members.size() > 0
+        && existsAfter(memberPath(date, resource.data.members[0]))
+        && existsAfter(orderPath(date, getAfter(memberPath(date, resource.data.members[0])).data.orderId))
+        && getAfter(orderPath(date, getAfter(memberPath(date, resource.data.members[0])).data.orderId)).data.members.hasAny([userName()])
+        && getAfter(orderPath(date, getAfter(memberPath(date, resource.data.members[0])).data.orderId)).data.members.hasAll(resource.data.members);
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn();
+      allow create: if signedIn()
+        && request.auth.uid == uid
+        && emailMatches()
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.keys().hasOnly(["email", "name"])
+        && claimAfter(request.resource.data.name).data.uid == request.auth.uid;
+      allow update: if isAdmin()
+        || (signedIn()
+          && request.auth.uid == uid
+          && emailMatches()
+          && request.resource.data.name is string
+          && request.resource.data.name.size() > 0
+          && (
+            resource.data.name == request.resource.data.name
+            || (
+              !(resource.data.name is string)
+              && claimAfter(request.resource.data.name).data.uid == request.auth.uid
+            )
+          ));
+      allow delete: if isAdmin();
+    }
+
+    match /claims/{name} {
+      allow read: if signedIn();
+      // create (not update) so a second account cannot take a name that exists.
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(["uid"])
+        && request.resource.data.uid == request.auth.uid
+        && getAfter(userPath()).data.name == name;
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    match /budgets/{date} {
+      allow read: if signedIn();
+      allow create, update: if isAdmin()
+        && request.resource.data.keys().hasOnly(["amount"])
+        && request.resource.data.amount is number
+        && request.resource.data.amount > 0;
+      allow delete: if isAdmin();
+    }
+
+    // days/{date}/members/{name} = { orderId } locks one group per person per date.
+    match /days/{date}/members/{name} {
+      allow read: if signedIn();
+      allow create, update: if hasName()
+        && request.resource.data.keys().hasOnly(["orderId"])
+        && request.resource.data.orderId is string
+        && existsAfter(orderPath(date, request.resource.data.orderId))
+        && getAfter(orderPath(date, request.resource.data.orderId)).data.members.hasAny([userName()])
+        && getAfter(orderPath(date, request.resource.data.orderId)).data.members.hasAny([name]);
+      allow delete: if isAdmin();
+    }
+
+    match /days/{date}/orders/{orderId} {
+      allow read: if signedIn();
+      allow create: if hasName()
+        && validOrder(request.resource.data)
+        && request.resource.data.members.hasAny([userName()]);
+      allow update: if hasName()
+        && validOrder(request.resource.data)
+        && (sameMembers() || leavingSelf());
+      allow delete: if hasName()
+        && (resource.data.members.hasAny([userName()]) || movedWithMe(date));
+    }
+  }
+}
