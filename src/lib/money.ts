@@ -18,9 +18,10 @@ export function budgetAmount(stored: number | null | undefined): number {
  * Rounded once on the full share so 2 × (6000/21) displays as ₹571.43,
  * while one person displays as ₹285.71.
  */
-export function limitPaise(budgetRupees: number, members = 1): number {
+export function limitPaise(budgetRupees: number, members = 1, headcount: number = TEAM_SIZE): number {
   const count = members > 0 ? members : 1;
-  return Math.round((toPaise(budgetRupees) * count) / TEAM_SIZE);
+  const size = headcount > 0 ? headcount : 1;
+  return Math.round((toPaise(budgetRupees) * count) / size);
 }
 
 export function perPersonLimitPaise(budgetRupees: number): number {

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { getDb } from "../firebase";
+import { budgetsCollection, type Side } from "../lib/constants";
 import { budgetAmount } from "../lib/money";
 import { messageOf } from "../lib/errors";
 import { saveBudget } from "../lib/ordersRepo";
 
-export function useBudget(date: string) {
+export function useBudget(date: string, side: Side) {
   const [amount, setAmount] = useState(budgetAmount(null));
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +15,7 @@ export function useBudget(date: string) {
   useEffect(() => {
     setLoading(true);
     return onSnapshot(
-      doc(getDb(), "budgets", date),
+      doc(getDb(), budgetsCollection(side), date),
       (snap) => {
         const stored = snap.exists() ? Number(snap.data().amount) : null;
         setAmount(budgetAmount(stored));
@@ -25,13 +26,13 @@ export function useBudget(date: string) {
         setLoading(false);
       },
     );
-  }, [date]);
+  }, [date, side]);
 
   async function save(next: number) {
     setStatus("saving");
     setError(null);
     try {
-      await saveBudget(getDb(), date, next);
+      await saveBudget(getDb(), side, date, next);
       setStatus("saved");
     } catch (err) {
       setStatus("error");

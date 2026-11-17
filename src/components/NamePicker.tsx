@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Header, Splash } from "./Header";
-import { TEAM } from "../lib/constants";
+import { rosterFor, type Side } from "../lib/constants";
 import { messageOf } from "../lib/errors";
 import { claimName } from "../lib/ordersRepo";
 import { getDb } from "../firebase";
@@ -9,13 +9,16 @@ import { useClaims } from "../hooks/useDirectory";
 export function NamePicker({
   uid,
   email,
+  side,
   onSignOut,
 }: {
   uid: string;
   email: string;
+  side: Side;
   onSignOut: () => void;
 }) {
-  const { claims, error: loadError } = useClaims();
+  const { claims, error: loadError } = useClaims(side);
+  const names = rosterFor(side);
   const [chosen, setChosen] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +28,7 @@ export function NamePicker({
     setSaving(true);
     setError(null);
     try {
-      await claimName(getDb(), uid, email, chosen);
+      await claimName(getDb(), uid, email, chosen, side);
     } catch (err) {
       setError(messageOf(err));
       setSaving(false);
@@ -40,7 +43,7 @@ export function NamePicker({
         <p className="mt-1 text-sm text-muted">You only do this once. Two people can’t share a name.</p>
         {loadError && <p className="mt-3 text-sm text-chili">{loadError}</p>}
         <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {TEAM.map((name) => {
+          {names.map((name) => {
             const taken = Boolean(claims[name]);
             const selected = chosen === name;
             return (

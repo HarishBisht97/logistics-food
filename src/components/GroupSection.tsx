@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
 import { blockedNames } from "../lib/group";
-import { TEAM } from "../lib/constants";
+import { rosterFor, type Side } from "../lib/constants";
 import type { StoredOrder } from "../types";
 
 export function GroupSection({
   myName,
+  side,
   myMembers,
   orders,
   pointers,
@@ -14,6 +15,7 @@ export function GroupSection({
   onLeave,
 }: {
   myName: string;
+  side: Side;
   myMembers: string[];
   orders: StoredOrder[];
   pointers: Record<string, string>;
@@ -48,7 +50,7 @@ export function GroupSection({
           </p>
         )}
         <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 xl:grid-cols-3">
-          {TEAM.filter((name) => name !== myName).map((name) => {
+          {rosterFor(side).filter((name) => name !== myName).map((name) => {
             const already = myMembers.includes(name);
             const unavailable = blocked.has(name);
             return (

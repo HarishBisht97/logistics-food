@@ -4,7 +4,7 @@ import { getDb } from "../firebase";
 import { useBudget } from "../hooks/useBudget";
 import { useClaims, useUsers } from "../hooks/useDirectory";
 import { useDayFeed } from "../hooks/useDayOrders";
-import { TEAM, TEAM_SIZE, sortByTeam } from "../lib/constants";
+import { headcountFor, rosterFor, sortByRoster, type Side } from "../lib/constants";
 import { todayKolkata } from "../lib/dates";
 import { messageOf } from "../lib/errors";
 import { MENU, priceOf } from "../lib/menu";
@@ -31,18 +31,31 @@ import type { StoredOrder } from "../types";
 
 export function AdminPage({ email, onSignOut }: { email: string; onSignOut: () => void }) {
   const [date, setDate] = useState(todayKolkata);
+  const [side, setSide] = useState<Side>("apc");
   return (
     <div className="min-h-screen">
       <Header email={email} subtitle="Admin" onSignOut={onSignOut} />
-      <AdminDay key={date} date={date} onDate={setDate} />
+      <AdminDay key={`${date}:${side}`} date={date} side={side} onDate={setDate} onSide={setSide} />
     </div>
   );
 }
 
-function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => void }) {
-  const budget = useBudget(date);
-  const feed = useDayFeed(date);
-  const { claims } = useClaims();
+function AdminDay({
+  date,
+  side,
+  onDate,
+  onSide,
+}: {
+  date: string;
+  side: Side;
+  onDate: (date: string) => void;
+  onSide: (side: Side) => void;
+}) {
+  const budget = useBudget(date, side);
+  const feed = useDayFeed(date, side);
+  const { claims } = useClaims(side);
+  const roster = rosterFor(side);
+  const headcount = headcountFor(side);
   const { users } = useUsers();
   const [draft, setDraft] = useState("");
   const [releaseError, setReleaseError] = useState<string | null>(null);
@@ -54,10 +67,14 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
 
   const live = useMemo(() => liveOrders(feed.orders, feed.pointers), [feed.orders, feed.pointers]);
   const rows = useMemo(() => {
-    return [...live].sort((a, b) => teamIndex(sortByTeam(a.members)[0] ?? "") - teamIndex(sortByTeam(b.members)[0] ?? ""));
-  }, [live]);
+    return [...live].sort(
+      (a, b) =>
+        rosterIndex(roster, sortByRoster(a.members, roster)[0] ?? "") -
+        rosterIndex(roster, sortByRoster(b.members, roster)[0] ?? ""),
+    );
+  }, [live, roster]);
   const covered = new Set(live.flatMap((order) => order.members));
-  const missing = TEAM.filter((name) => !covered.has(name));
+  const missing = roster.filter((name) => !covered.has(name));
   const mains = placedMainPaise(live);
   const extras = placedExtraPaise(live);
   const left = budgetLeftPaise(budget.amount, mains);
@@ -82,19 +99,29 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
     if (!window.confirm(`Release ${name}? They can pick a name again.`)) return;
     setReleaseError(null);
     try {
-      await releaseName(getDb(), name, uid);
+      await releaseName(getDb(), side, name, uid);
     } catch (err) {
       setReleaseError(messageOf(err));
     }
   }
 
   function download() {
-    const csv = buildCsv(date, live, budget.amount);
-    downloadCsv(`ipt-apc-food-${date}.csv`, csv);
+    const csv = buildCsv(date, live, budget.amount, headcount, roster);
+    const prefix = side === "placement" ? "ipt-placement-food" : "ipt-apc-food";
+    downloadCsv(`${prefix}-${date}.csv`, csv);
   }
 
   return (
     <main className="mx-auto max-w-6xl space-y-6 px-4 py-4">
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Ordering group">
+        <SideButton active={side === "apc"} onClick={() => onSide("apc")}>
+          APC
+        </SideButton>
+        <SideButton active={side === "placement"} onClick={() => onSide("placement")}>
+          Placement managers
+        </SideButton>
+      </div>
+
       <div className="flex flex-wrap items-end gap-3">
         <label className="text-sm font-medium">
           Date
@@ -130,7 +157,7 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
           {budget.status === "saving" ? "Saving…" : "Save"}
         </button>
         <p className="text-sm text-muted">
-          Per person {formatPaise(limitPaise(budget.amount, 1))}
+          Per person {formatPaise(limitPaise(budget.amount, 1, headcount))}
           {budget.status === "saved" && " · Saved"}
         </p>
       </form>
@@ -144,8 +171,8 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
           hint={`of ${formatPaise(toPaise(budget.amount))}`}
           tone={overBudget ? "red" : "green"}
         />
-        <Card label="People who placed" value={`${placedPeopleCount(live)} / ${TEAM_SIZE}`} />
-        <Card label="Orders over limit" value={String(ordersOverLimit(live, budget.amount))} />
+        <Card label="People who placed" value={`${placedPeopleCount(live, roster)} / ${headcount}`} />
+        <Card label="Orders over limit" value={String(ordersOverLimit(live, budget.amount, headcount))} />
         <Card
           label="Budget left"
           value={formatPaise(left)}
@@ -167,13 +194,13 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
             </thead>
             <tbody>
               {rows.map((order) => (
-                <OrderRow key={order.id} order={order} budget={budget.amount} />
+                <OrderRow key={order.id} order={order} budget={budget.amount} headcount={headcount} roster={roster} />
               ))}
               {missing.map((name) => (
                 <tr key={name} className="border-t align-top">
                   <td className="px-3 py-3">
                     <div className="font-medium">{name}</div>
-                    <div className="text-xs text-muted">1 person · limit {formatPaise(limitPaise(budget.amount, 1))}</div>
+                    <div className="text-xs text-muted">1 person · limit {formatPaise(limitPaise(budget.amount, 1, headcount))}</div>
                   </td>
                   <td className="px-3 py-3 text-muted">—</td>
                   <td className="px-3 py-3 text-muted">—</td>
@@ -215,7 +242,7 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
             <tbody>
               {placedExtras.map((order) => (
                 <tr key={order.id} className="border-t align-top">
-                  <td className="px-3 py-3">{sortByTeam(order.members).join(", ")}</td>
+                  <td className="px-3 py-3">{sortByRoster(order.members, roster).join(", ")}</td>
                   <td className="px-3 py-3">{describeItems(order.extras) || "—"}</td>
                   <td className="px-3 py-3 font-mono">
                     {formatPaise(Object.entries(order.extras).reduce((sum, [id, qty]) => sum + toPaise(priceOf(id)) * qty, 0))}
@@ -252,7 +279,7 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
       <section>
         <h2 className="text-lg font-semibold">Release a name</h2>
         <ul className="mt-2 space-y-2">
-          {TEAM.map((name) => {
+          {roster.map((name) => {
             const owner = users.find((user) => user.name === name);
             const uid = owner?.uid ?? claims[name] ?? null;
             if (!uid) return null;
@@ -273,7 +300,7 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
             );
           })}
         </ul>
-        {TEAM.every((name) => !claims[name] && !users.some((user) => user.name === name)) && (
+        {roster.every((name) => !claims[name] && !users.some((user) => user.name === name)) && (
           <p className="mt-2 text-sm text-muted">No names claimed yet.</p>
         )}
         {releaseError && <p className="mt-2 text-sm text-chili">{releaseError}</p>}
@@ -282,17 +309,27 @@ function AdminDay({ date, onDate }: { date: string; onDate: (date: string) => vo
   );
 }
 
-function OrderRow({ order, budget }: { order: StoredOrder; budget: number }) {
-  const names = sortByTeam(order.members).join(", ");
+function OrderRow({
+  order,
+  budget,
+  headcount,
+  roster,
+}: {
+  order: StoredOrder;
+  budget: number;
+  headcount: number;
+  roster: readonly string[];
+}) {
+  const names = sortByRoster(order.members, roster).join(", ");
   const size = order.members.length;
-  const status = orderStatus(order, budget, priceOf);
+  const status = orderStatus(order, budget, priceOf, headcount);
   const total = Object.entries(order.items).reduce((sum, [id, qty]) => sum + toPaise(priceOf(id)) * qty, 0);
   return (
     <tr className="border-t align-top">
       <td className="px-3 py-3">
         <div className="font-medium">{names}</div>
         <div className="text-xs text-muted">
-          {size === 1 ? "1 person" : `${size} people`} · limit {formatPaise(limitPaise(budget, size))}
+          {size === 1 ? "1 person" : `${size} people`} · limit {formatPaise(limitPaise(budget, size, headcount))}
         </div>
       </td>
       <td className="px-3 py-3">{describeItems(order.items) || "—"}</td>
@@ -331,7 +368,29 @@ function Pill({ tone, children }: { tone: "green" | "red" | "grey"; children: st
   return <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${color}`}>{children}</span>;
 }
 
-function teamIndex(name: string): number {
-  const index = TEAM.findIndex((item) => item === name);
+function SideButton({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`h-11 rounded-full px-4 text-sm font-semibold ${
+        active ? "bg-primary text-white" : "border border-line bg-white"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+function rosterIndex(roster: readonly string[], name: string): number {
+  const index = roster.indexOf(name);
   return index < 0 ? 999 : index;
 }

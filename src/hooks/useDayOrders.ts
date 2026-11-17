@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { getDb } from "../firebase";
-import { SAVE_DEBOUNCE_MS } from "../lib/constants";
+import { daysCollection, SAVE_DEBOUNCE_MS, type Side } from "../lib/constants";
 import { messageOf } from "../lib/errors";
 import { formGroup, leaveGroup, saveOrderDiff } from "../lib/ordersRepo";
 import { canPlace, emptyOrder, placeOrder, setNote, setQty, clearList } from "../lib/orderState";
@@ -18,7 +18,7 @@ import type { ListName, OrderDraft, StoredOrder } from "../types";
 
 type SaveStatus = "idle" | "saving" | "saved" | "error";
 
-type Pending = { diff: OrderDiff; date: string; name: string };
+type Pending = { diff: OrderDiff; date: string; name: string; side: Side };
 
 function sameMembers(left: readonly string[], right: readonly string[]) {
   if (left.length !== right.length) return false;
@@ -37,7 +37,7 @@ function cloneDraft(order: OrderDraft): OrderDraft {
   };
 }
 
-export function useDayFeed(date: string) {
+export function useDayFeed(date: string, side: Side) {
   const [orders, setOrders] = useState<StoredOrder[]>([]);
   const [pointers, setPointers] = useState<Record<string, string>>({});
   const [error, setError] = useState<string | null>(null);
@@ -47,7 +47,7 @@ export function useDayFeed(date: string) {
     setReady(false);
     const db = getDb();
     const unsubOrders = onSnapshot(
-      collection(db, "days", date, "orders"),
+      collection(db, daysCollection(side), date, "orders"),
       (snap) => {
         setOrders(snap.docs.map((item) => parseOrder(item.id, item.data())));
         setReady(true);
@@ -58,7 +58,7 @@ export function useDayFeed(date: string) {
       },
     );
     const unsubMembers = onSnapshot(
-      collection(db, "days", date, "members"),
+      collection(db, daysCollection(side), date, "members"),
       (snap) => {
         const next: Record<string, string> = {};
         snap.forEach((item) => {
@@ -72,12 +72,12 @@ export function useDayFeed(date: string) {
       unsubOrders();
       unsubMembers();
     };
-  }, [date]);
+  }, [date, side]);
 
   return { orders, pointers, error, ready };
 }
 
-export function useDayOrders(date: string, myName: string) {
+export function useDayOrders(date: string, myName: string, side: Side) {
   const [orders, setOrders] = useState<StoredOrder[]>([]);
   const [pointers, setPointers] = useState<Record<string, string>>({});
   const [myOrder, setMyOrder] = useState<OrderDraft>(() => emptyOrder([myName]));
@@ -98,10 +98,12 @@ export function useDayOrders(date: string, myName: string) {
   const pauseRemote = useRef(false);
   const dateRef = useRef(date);
   const nameRef = useRef(myName);
+  const sideRef = useRef(side);
   const chainRef = useRef<Promise<void>>(Promise.resolve());
   const mountedRef = useRef(true);
   dateRef.current = date;
   nameRef.current = myName;
+  sideRef.current = side;
 
   useEffect(() => {
     mountedRef.current = true;
@@ -123,7 +125,7 @@ export function useDayOrders(date: string, myName: string) {
   async function writePending(taken: Pending | null): Promise<void> {
     if (!taken) return;
     try {
-      const merged = await saveOrderDiff(getDb(), taken.date, taken.name, taken.diff);
+      const merged = await saveOrderDiff(getDb(), taken.side, taken.date, taken.name, taken.diff);
       if (!mountedRef.current || dateRef.current !== taken.date || nameRef.current !== taken.name) return;
       const newer = pendingRef.current;
       if (newer && newer.date === taken.date && newer.name === taken.name) {
@@ -146,6 +148,7 @@ export function useDayOrders(date: string, myName: string) {
           diff: combineOrderDiff(taken.diff, newer.diff),
           date: taken.date,
           name: taken.name,
+          side: taken.side,
         };
       } else {
         pendingRef.current = taken;
@@ -173,6 +176,7 @@ export function useDayOrders(date: string, myName: string) {
       },
       date: pending.date,
       name: pending.name,
+      side: pending.side,
     };
   }
 
@@ -232,7 +236,7 @@ export function useDayOrders(date: string, myName: string) {
 
     const db = getDb();
     const unsubOrders = onSnapshot(
-      collection(db, "days", date, "orders"),
+      collection(db, daysCollection(side), date, "orders"),
       (snap) => {
         const list = snap.docs.map((item) => parseOrder(item.id, item.data()));
         ordersRef.current = list;
@@ -247,7 +251,7 @@ export function useDayOrders(date: string, myName: string) {
       },
     );
     const unsubMembers = onSnapshot(
-      collection(db, "days", date, "members"),
+      collection(db, daysCollection(side), date, "members"),
       (snap) => {
         const next: Record<string, string> = {};
         snap.forEach((item) => {
@@ -269,12 +273,12 @@ export function useDayOrders(date: string, myName: string) {
       const pending = pendingRef.current;
       pendingRef.current = null;
       if (pending && !isEmptyDiff(pending.diff)) {
-        void saveOrderDiff(getDb(), pending.date, pending.name, pending.diff).catch(() => undefined);
+        void saveOrderDiff(getDb(), pending.side, pending.date, pending.name, pending.diff).catch(() => undefined);
       }
     };
     // applyIfClean closes over the latest setters; refs hold the mutable sync state.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [date, myName]);
+  }, [date, myName, side]);
 
   function mutate(update: (order: OrderDraft) => OrderDraft, immediate = false) {
     if (pauseRemote.current) return;
@@ -283,11 +287,16 @@ export function useDayOrders(date: string, myName: string) {
     const piece = diffOrder(prev, next);
     if (isEmptyDiff(piece)) return;
     const current = pendingRef.current;
-    const sameScope = current && current.date === dateRef.current && current.name === nameRef.current;
+    const sameScope =
+      current &&
+      current.date === dateRef.current &&
+      current.name === nameRef.current &&
+      current.side === sideRef.current;
     pendingRef.current = {
       diff: sameScope ? combineOrderDiff(current.diff, piece) : piece,
       date: dateRef.current,
       name: nameRef.current,
+      side: sideRef.current,
     };
     localSeq.current += 1;
     draftRef.current = next;
@@ -316,7 +325,7 @@ export function useDayOrders(date: string, myName: string) {
     pauseRemote.current = true;
     try {
       await flushPending();
-      const merged = await formGroup(getDb(), dateRef.current, nameRef.current, selected);
+      const merged = await formGroup(getDb(), sideRef.current, dateRef.current, nameRef.current, selected);
       const clean = cloneDraft(merged);
       localSeq.current += 1;
       ackedSeq.current = localSeq.current;
@@ -352,7 +361,7 @@ export function useDayOrders(date: string, myName: string) {
     pauseRemote.current = true;
     try {
       await flushPending();
-      await leaveGroup(getDb(), dateRef.current, nameRef.current);
+      await leaveGroup(getDb(), sideRef.current, dateRef.current, nameRef.current);
       const solo = emptyOrder([nameRef.current]);
       localSeq.current += 1;
       ackedSeq.current = localSeq.current;

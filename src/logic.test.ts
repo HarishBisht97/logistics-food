@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { TEAM_SIZE } from "./lib/constants";
+import { PLACEMENT_SIZE, TEAM_SIZE, resolveSide } from "./lib/constants";
 import { buildCsv } from "./lib/csv";
 import { todayKolkata, formatPlacedAt } from "./lib/dates";
 import { assertCanMerge, mergeOrders, orderIdFor, splitLeave } from "./lib/group";
@@ -34,6 +34,7 @@ describe("menu", () => {
     expect(MENU).toHaveLength(220);
     expect(MENU[0]).toMatchObject({ id: 0, name: "Tomato Soup", price: 115.5, veg: true });
     expect(TEAM_SIZE).toBe(21);
+    expect(PLACEMENT_SIZE).toBe(5);
     const cats: string[] = [];
     for (const item of MENU) {
       if (!cats.includes(item.cat)) cats.push(item.cat);
@@ -59,6 +60,17 @@ describe("money", () => {
     expect(formatPaise(limitPaise(budgetAmount(undefined), 1))).toBe("₹285.71");
     expect(formatPaise(limitPaise(budgetAmount(4200), 1))).toBe("₹200.00");
     expect(limitPaise(budgetAmount(4200), 1)).not.toBe(limitPaise(budgetAmount(null), 1));
+  });
+
+  it("uses each group's own headcount for the limit", () => {
+    expect(limitPaise(6000, 1)).toBe(limitPaise(6000, 1, TEAM_SIZE));
+    expect(formatPaise(limitPaise(6000, 1, PLACEMENT_SIZE))).toBe("₹1,200.00");
+    expect(formatPaise(limitPaise(6000, 2, PLACEMENT_SIZE))).toBe("₹2,400.00");
+    const cap = limitPaise(6000, 1, PLACEMENT_SIZE);
+    expect(limitStatus(cap, cap)).toEqual({ kind: "under", leftPaise: 0 });
+    expect(resolveSide(undefined, "Abhay")).toBe("apc");
+    expect(resolveSide("placement", null)).toBe("placement");
+    expect(resolveSide(undefined, null)).toBeNull();
   });
 
   it("treats spending the exact limit as under", () => {

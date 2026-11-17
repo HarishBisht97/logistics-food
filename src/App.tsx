@@ -7,6 +7,7 @@ import { isAdminEmail } from "./lib/constants";
 import { Splash } from "./components/Header";
 import { LoginPage } from "./components/LoginPage";
 import { NamePicker } from "./components/NamePicker";
+import { RolePicker } from "./components/RolePicker";
 import { OrderPage } from "./components/OrderPage";
 import { AdminPage } from "./components/AdminPage";
 
@@ -47,8 +48,11 @@ function OrderGate({ user, onSignOut }: { user: User; onSignOut: () => void }) {
   const profile = useProfile(user.uid);
   if (profile.loading) return <Splash label="Loading your name…" />;
   if (profile.error) return <Splash label={profile.error} />;
-  if (!profile.name) {
-    return <NamePicker uid={user.uid} email={user.email ?? ""} onSignOut={onSignOut} />;
+  if (!profile.side) {
+    return <RolePicker uid={user.uid} email={user.email ?? ""} onSignOut={onSignOut} />;
   }
-  return <OrderPage email={user.email ?? ""} name={profile.name} onSignOut={onSignOut} />;
+  if (!profile.name) {
+    return <NamePicker uid={user.uid} email={user.email ?? ""} side={profile.side} onSignOut={onSignOut} />;
+  }
+  return <OrderPage email={user.email ?? ""} name={profile.name} side={profile.side} onSignOut={onSignOut} />;
 }

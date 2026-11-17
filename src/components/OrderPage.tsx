@@ -3,6 +3,7 @@ import { Header } from "./Header";
 import { GroupSection } from "./GroupSection";
 import { MenuBrowser } from "./MenuBrowser";
 import { OrderPanel } from "./OrderPanel";
+import { headcountFor, type Side } from "../lib/constants";
 import { todayKolkata } from "../lib/dates";
 import { MENU } from "../lib/menu";
 import { useBudget } from "../hooks/useBudget";
@@ -12,24 +13,37 @@ import type { OrderMode, VegFilter } from "../types";
 export function OrderPage({
   email,
   name,
+  side,
   onSignOut,
 }: {
   email: string;
   name: string;
+  side: Side;
   onSignOut: () => void;
 }) {
   const [date, setDate] = useState(todayKolkata);
   return (
     <div className="min-h-screen">
       <Header email={email} subtitle={name} onSignOut={onSignOut} />
-      <DayOrder key={`${date}:${name}`} date={date} name={name} onDate={setDate} />
+      <DayOrder key={`${date}:${name}:${side}`} date={date} name={name} side={side} onDate={setDate} />
     </div>
   );
 }
 
-function DayOrder({ date, name, onDate }: { date: string; name: string; onDate: (date: string) => void }) {
-  const budget = useBudget(date);
-  const day = useDayOrders(date, name);
+function DayOrder({
+  date,
+  name,
+  side,
+  onDate,
+}: {
+  date: string;
+  name: string;
+  side: Side;
+  onDate: (date: string) => void;
+}) {
+  const budget = useBudget(date, side);
+  const day = useDayOrders(date, name, side);
+  const headcount = headcountFor(side);
   const [mode, setMode] = useState<OrderMode>("main");
   const [query, setQuery] = useState("");
   const [veg, setVeg] = useState<VegFilter>("all");
@@ -55,6 +69,7 @@ function DayOrder({ date, name, onDate }: { date: string; name: string; onDate: 
         {budget.error && <p className="text-sm text-chili">{budget.error}</p>}
         <GroupSection
           myName={name}
+          side={side}
           myMembers={myMembers}
           orders={day.orders}
           pointers={day.pointers}
@@ -79,6 +94,7 @@ function DayOrder({ date, name, onDate }: { date: string; name: string; onDate: 
       <OrderPanel
         order={day.myOrder}
         budget={budget.amount}
+        headcount={headcount}
         ready={day.ready}
         busy={day.groupBusy}
         saveStatus={day.saveStatus}

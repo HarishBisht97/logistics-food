@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TEAM_SIZE } from "../lib/constants";
 import { formatPlacedAt } from "../lib/dates";
 import { menuItem } from "../lib/menu";
 import { formatPaise, limitPaise, limitStatus, spentTowardLimit, toPaise } from "../lib/money";
@@ -9,6 +10,7 @@ import type { ListName, OrderDraft } from "../types";
 export function OrderPanel({
   order,
   budget,
+  headcount = TEAM_SIZE,
   ready,
   busy,
   saveStatus,
@@ -22,6 +24,7 @@ export function OrderPanel({
 }: {
   order: OrderDraft;
   budget: number;
+  headcount?: number;
   ready: boolean;
   busy: boolean;
   saveStatus: "idle" | "saving" | "saved" | "error";
@@ -35,7 +38,7 @@ export function OrderPanel({
 }) {
   const [open, setOpen] = useState(false);
   const people = Math.max(order.members.length, 1);
-  const cap = limitPaise(budget, people);
+  const cap = limitPaise(budget, people, headcount);
   const spent = spentTowardLimit(order, (id) => menuItem(id)?.price ?? 0);
   const status = limitStatus(spent, cap);
   const over = status.kind === "over";

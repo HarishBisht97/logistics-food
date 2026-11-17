@@ -1,4 +1,4 @@
-import { TEAM } from "./constants";
+import { TEAM, TEAM_SIZE } from "./constants";
 import { menuItem, priceOf } from "./menu";
 import {
   budgetLeftPaise,
@@ -37,23 +37,30 @@ export function placedExtraPaise(orders: readonly StoredOrder[]): number {
   return total;
 }
 
-export function placedPeopleCount(orders: readonly StoredOrder[]): number {
+export function placedPeopleCount(
+  orders: readonly StoredOrder[],
+  roster: readonly string[] = TEAM_LIST,
+): number {
   const names = new Set<string>();
   for (const order of orders) {
     if (!order.placed) continue;
     for (const name of order.members) {
-      if (TEAM_LIST.includes(name)) names.add(name);
+      if (roster.includes(name)) names.add(name);
     }
   }
   return names.size;
 }
 
-export function ordersOverLimit(orders: readonly StoredOrder[], budget: number): number {
+export function ordersOverLimit(
+  orders: readonly StoredOrder[],
+  budget: number,
+  headcount: number = TEAM_SIZE,
+): number {
   let count = 0;
   for (const order of orders) {
     if (!order.placed) continue;
     const spent = mainTotalPaise(order.items, priceOf);
-    const cap = limitPaise(budget, order.members.length);
+    const cap = limitPaise(budget, order.members.length, headcount);
     if (limitStatus(spent, cap).kind === "over") count += 1;
   }
   return count;
@@ -65,6 +72,7 @@ export function orderStatus(
   order: OrderDraft | null,
   budget: number,
   price: (id: string) => number,
+  headcount: number = TEAM_SIZE,
 ): { label: string; tone: StatusTone } {
   const empty =
     !order ||
@@ -75,7 +83,7 @@ export function orderStatus(
   if (empty) return { label: "no order", tone: "grey" };
   if (!order.placed) return { label: "selecting… not placed", tone: "grey" };
   const spent = mainTotalPaise(order.items, price);
-  const cap = limitPaise(budget, Math.max(order.members.length, 1));
+  const cap = limitPaise(budget, Math.max(order.members.length, 1), headcount);
   const status = limitStatus(spent, cap);
   if (status.kind === "under") {
     return { label: `${formatPaise(status.leftPaise)} left`, tone: "green" };

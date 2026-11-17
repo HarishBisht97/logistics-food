@@ -1,4 +1,4 @@
-import { sortByTeam } from "./constants";
+import { TEAM, TEAM_SIZE, sortByRoster } from "./constants";
 import { menuItem, priceOf } from "./menu";
 import { formatPaise, limitPaise, mainTotalPaise, toPaise } from "./money";
 import { orderStatus } from "./status";
@@ -10,7 +10,13 @@ function cell(value: string | number): string {
   return text;
 }
 
-export function buildCsv(date: string, orders: readonly StoredOrder[], budget: number): string {
+export function buildCsv(
+  date: string,
+  orders: readonly StoredOrder[],
+  budget: number,
+  headcount: number = TEAM_SIZE,
+  roster: readonly string[] = TEAM,
+): string {
   const header = [
     "Date",
     "Name/group",
@@ -28,10 +34,10 @@ export function buildCsv(date: string, orders: readonly StoredOrder[], budget: n
 
   for (const order of orders) {
     if (!order.placed) continue;
-    const names = sortByTeam(order.members).join(", ");
+    const names = sortByRoster(order.members, roster).join(", ");
     const size = order.members.length;
-    const limit = formatPaise(limitPaise(budget, size));
-    const status = orderStatus(order, budget, priceOf).label;
+    const limit = formatPaise(limitPaise(budget, size, headcount));
+    const status = orderStatus(order, budget, priceOf, headcount).label;
     const mainTotal = formatPaise(mainTotalPaise(order.items, priceOf));
     const extraTotal = formatPaise(mainTotalPaise(order.extras, priceOf));
 
