@@ -1,5 +1,5 @@
 // Keep this email in sync with isAdmin() in firestore.rules.
-export const ADMIN_EMAILS = ["26M0307@iitb.ac.in"] as const;
+export const ADMIN_EMAILS = ["26m0311@iitb.ac.in"] as const;
 
 export const TEAM = [
   "Abhay",

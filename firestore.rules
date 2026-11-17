@@ -10,7 +10,7 @@ service cloud.firestore {
     function isAdmin() {
       return signedIn()
         && request.auth.token.email is string
-        && request.auth.token.email.lower() == "26m0307@iitb.ac.in";
+        && request.auth.token.email.lower() == "26m0311@iitb.ac.in";
     }
 
     function emailMatches() {
