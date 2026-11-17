@@ -1,0 +1,34 @@
+[debug] [2026-11-17T17:53:50.147Z] ----------------------------------------------------------------------
+[debug] [2026-11-17T17:53:50.148Z] Command:       /Users/harishbisht/.nvm/versions/node/v20.18.1/bin/node /Users/harishbisht/.nvm/versions/node/v20.18.1/bin/firebase deploy --only firestore:rules,hosting
+[debug] [2026-11-17T17:53:50.149Z] CLI Version:   15.36.0
+[debug] [2026-11-17T17:53:50.149Z] Platform:      darwin
+[debug] [2026-11-17T17:53:50.149Z] Node Version:  v20.18.1
+[debug] [2026-11-17T17:53:50.149Z] Detected Agent: unknown
+[debug] [2026-11-17T17:53:50.149Z] Time:          Tue Nov 17 2026 23:23:50 GMT+0530 (India Standard Time)
+[debug] [2026-11-17T17:53:50.149Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-11-17T17:53:50.845Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-11-17T17:53:50.845Z] > authorizing via signed-in user (26m0307@iitb.ac.in)
+[debug] [2026-11-17T17:53:50.845Z] [iam] checking project ipt-apc-food for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-11-17T17:53:50.846Z] Checked if tokens are valid: false, expires at: 1794937664366
+[debug] [2026-11-17T17:53:50.846Z] Checked if tokens are valid: false, expires at: 1794937664366
+[debug] [2026-11-17T17:53:50.846Z] > refreshing access token with scopes: []
+[debug] [2026-11-17T17:53:50.847Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-11-17T17:53:50.847Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-11-17T17:53:51.174Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-11-17T17:53:51.175Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-11-17T17:53:51.184Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/ipt-apc-food:testIamPermissions [none]
+[debug] [2026-11-17T17:53:51.185Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/ipt-apc-food:testIamPermissions  x-goog-user-project=ipt-apc-food
+[debug] [2026-11-17T17:53:51.185Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ipt-apc-food:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-11-17T17:53:52.767Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/ipt-apc-food:testIamPermissions 200
+[debug] [2026-11-17T17:53:52.767Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/ipt-apc-food:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-11-17T17:53:52.768Z] Checked if tokens are valid: true, expires at: 1794941630175
+[debug] [2026-11-17T17:53:52.768Z] Checked if tokens are valid: true, expires at: 1794941630175
+[debug] [2026-11-17T17:53:52.768Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/ipt-apc-food [none]
+[debug] [2026-11-17T17:53:53.275Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/ipt-apc-food 200
+[debug] [2026-11-17T17:53:53.275Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/ipt-apc-food {"projectId":"ipt-apc-food","projectNumber":"699446601216","displayName":"ipt-apc-food","name":"projects/ipt-apc-food","resources":{"hostingSite":"ipt-apc-food"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_f71daf78-3607-4c2b-9578-3b4aecf2c4cf"}
+[info] 
+[info] === Deploying to 'ipt-apc-food'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] Running command: npm run build

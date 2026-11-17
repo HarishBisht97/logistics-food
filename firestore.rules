@@ -6,11 +6,31 @@ service cloud.firestore {
     }
 
     // Keep this email in sync with ADMIN_EMAILS in src/lib/constants.ts.
-    // Auth stores the address in lowercase.
-    function isAdmin() {
+    // Auth stores the address in lowercase. The seed admin does not need an
+    // admins document, so a granted admin cannot lock the app out.
+    function isSeedAdmin() {
       return signedIn()
         && request.auth.token.email is string
         && request.auth.token.email.lower() == "26m0311@iitb.ac.in";
+    }
+
+    function isListedAdmin() {
+      return signedIn()
+        && request.auth.token.email is string
+        && exists(/databases/$(database)/documents/admins/$(request.auth.token.email.lower()));
+    }
+
+    function isAdmin() {
+      return isSeedAdmin() || isListedAdmin();
+    }
+
+    function grantableAdminEmail(email) {
+      return email is string
+        && email == email.lower()
+        && email.size() > 5
+        && email.size() < 200
+        && email.matches("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$")
+        && email != "26m0311@iitb.ac.in";
     }
 
     function emailMatches() {
@@ -244,6 +264,19 @@ service cloud.firestore {
             )
           ));
       allow delete: if isAdmin();
+    }
+
+    match /admins/{email} {
+      allow get: if signedIn()
+        && request.auth.token.email is string
+        && request.auth.token.email.lower() == email;
+      allow list: if isAdmin();
+      allow create: if isAdmin()
+        && grantableAdminEmail(email)
+        && request.resource.data.keys().hasOnly(["email"])
+        && request.resource.data.email == email;
+      allow update: if false;
+      allow delete: if isAdmin() && email != "26m0311@iitb.ac.in";
     }
 
     match /claims/{name} {

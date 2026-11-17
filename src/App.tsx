@@ -1,9 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import type { User } from "firebase/auth";
 import { isFirebaseConfigured } from "./firebase";
+import { useAdmin } from "./hooks/useAdmin";
 import { useAuth } from "./hooks/useAuth";
 import { useProfile } from "./hooks/useProfile";
-import { isAdminEmail } from "./lib/constants";
 import { Splash } from "./components/Header";
 import { LoginPage } from "./components/LoginPage";
 import { NamePicker } from "./components/NamePicker";
@@ -23,25 +23,37 @@ export default function App() {
   const user = auth.user;
   const signOut = () => void auth.signOut();
 
+  return <SignedIn user={user} onSignOut={signOut} />;
+}
+
+function SignedIn({ user, onSignOut }: { user: User; onSignOut: () => void }) {
+  const access = useAdmin(user.email);
+  if (access.loading) return <Splash label="Checking access…" />;
+  if (access.error) return <Splash label={access.error} />;
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin" element={<AdminGate user={user} onSignOut={signOut} />} />
-        <Route path="/order" element={<OrderGate user={user} onSignOut={signOut} />} />
+        <Route
+          path="/admin"
+          element={
+            access.admin ? (
+              <AdminPage email={user.email ?? ""} onSignOut={onSignOut} />
+            ) : (
+              <Navigate to="/order" replace />
+            )
+          }
+        />
+        <Route path="/order" element={<OrderGate user={user} onSignOut={onSignOut} />} />
         <Route
           path="*"
           element={
-            isAdminEmail(user.email) ? <Navigate to="/admin" replace /> : <OrderGate user={user} onSignOut={signOut} />
+            access.admin ? <Navigate to="/admin" replace /> : <OrderGate user={user} onSignOut={onSignOut} />
           }
         />
       </Routes>
     </BrowserRouter>
   );
-}
-
-function AdminGate({ user, onSignOut }: { user: User; onSignOut: () => void }) {
-  if (!isAdminEmail(user.email)) return <Navigate to="/order" replace />;
-  return <AdminPage email={user.email ?? ""} onSignOut={onSignOut} />;
 }
 
 function OrderGate({ user, onSignOut }: { user: User; onSignOut: () => void }) {

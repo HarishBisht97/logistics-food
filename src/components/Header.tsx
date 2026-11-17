@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import logo from "../data/iitb.svg";
-import { isAdminEmail } from "../lib/constants";
+import { useAdmin } from "../hooks/useAdmin";
 
 export function Brand({
   subtitle,
@@ -19,7 +19,7 @@ export function Brand({
       />
       <div className="min-w-0">
         <p className="truncate text-[15px] font-semibold leading-5 tracking-tight">
-          IPT APC food
+          IPT FoodHub
         </p>
         {subtitle ? (
           <p className="truncate text-xs leading-4 text-muted">{subtitle}</p>
@@ -38,7 +38,8 @@ export function Header({
   subtitle?: string;
   onSignOut: () => void;
 }) {
-  const admin = isAdminEmail(email);
+  const access = useAdmin(email);
+  const admin = access.admin;
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-paper/90 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center gap-3 px-4">
@@ -85,7 +86,7 @@ export function Splash({
       <div className="text-center">
         <img src={logo} alt="" className="mx-auto h-16 w-16 object-contain" />
         <h1 className="mt-3 text-[28px] font-bold leading-[34px] tracking-tight sm:text-4xl">
-          IPT APC food
+          IPT FoodHub
         </h1>
         <p className="mt-4 text-muted">{label}</p>
         {children}

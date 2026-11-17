@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { Header } from "./Header";
 import { getDb } from "../firebase";
+import { useAdminList } from "../hooks/useAdmin";
+import { grantAdmin, revokeAdmin } from "../lib/adminsRepo";
 import { useBudget } from "../hooks/useBudget";
 import { useClaims, useUsers } from "../hooks/useDirectory";
 import { useDayFeed } from "../hooks/useDayOrders";
-import { headcountFor, rosterFor, sortByRoster, type Side } from "../lib/constants";
+import { ADMIN_EMAILS, headcountFor, rosterFor, sortByRoster, type Side } from "../lib/constants";
 import { todayKolkata } from "../lib/dates";
 import { messageOf } from "../lib/errors";
 import { MENU, priceOf } from "../lib/menu";
@@ -121,6 +123,8 @@ function AdminDay({
           Placement managers
         </SideButton>
       </div>
+
+      <AdminGrants />
 
       <div className="flex flex-wrap items-end gap-3">
         <label className="text-sm font-medium">
@@ -366,6 +370,86 @@ function Pill({ tone, children }: { tone: "green" | "red" | "grey"; children: st
   const color =
     tone === "green" ? "bg-leaf/15 text-leaf" : tone === "red" ? "bg-chili/10 text-chili" : "bg-fill text-muted";
   return <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${color}`}>{children}</span>;
+}
+
+function AdminGrants() {
+  const { emails, error: loadError } = useAdminList();
+  const [draft, setDraft] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const permanent = ADMIN_EMAILS[0];
+
+  async function grant(event: FormEvent) {
+    event.preventDefault();
+    setBusy(true);
+    setError(null);
+    try {
+      await grantAdmin(getDb(), draft);
+      setDraft("");
+    } catch (err) {
+      setError(messageOf(err));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function revoke(email: string) {
+    if (!window.confirm(`Remove ${email} as admin?`)) return;
+    setError(null);
+    try {
+      await revokeAdmin(getDb(), email);
+    } catch (err) {
+      setError(messageOf(err));
+    }
+  }
+
+  return (
+    <section>
+      <h2 className="text-lg font-semibold">Admins</h2>
+      <p className="mt-1 text-sm text-muted">They become an admin the next time they sign in with that email.</p>
+      <ul className="mt-3 space-y-2">
+        <li className="flex min-h-11 items-center justify-between gap-3 rounded-2xl border border-line bg-white px-3 py-2 shadow-card">
+          <span className="break-all font-medium">{permanent}</span>
+          <span className="shrink-0 text-xs text-muted">Permanent</span>
+        </li>
+        {emails.map((email) => (
+          <li
+            key={email}
+            className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-line bg-white px-3 py-2 shadow-card"
+          >
+            <span className="min-w-0 break-all font-medium">{email}</span>
+            <button
+              type="button"
+              onClick={() => void revoke(email)}
+              className="h-11 shrink-0 rounded-full border border-line px-3 text-sm"
+            >
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
+      <form className="mt-3 flex flex-wrap items-end gap-2" onSubmit={(event) => void grant(event)}>
+        <label className="text-sm font-medium">
+          Email
+          <input
+            type="email"
+            required
+            value={draft}
+            onChange={(event) => setDraft(event.target.value)}
+            className="mt-1 block h-12 w-72 max-w-full rounded-xl border border-line bg-white px-3 text-base"
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={busy}
+          className="h-12 rounded-2xl bg-primary px-4 text-sm font-semibold text-white disabled:bg-fill disabled:text-muted"
+        >
+          {busy ? "Saving…" : "Make admin"}
+        </button>
+      </form>
+      {(error || loadError) && <p className="mt-2 text-sm text-chili">{error || loadError}</p>}
+    </section>
+  );
 }
 
 function SideButton({

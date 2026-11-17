@@ -1,15 +1,16 @@
 ---
-name: "IPT APC Food"
+name: "IPT FoodHub"
 description: "Warm Indian canteen lunch ordering system for a 21-person team at IIT Bombay"
 ---
 
 ## Overview
 
-IPT APC Food is a private, warm Indian canteen-inspired lunch ordering web app built for a 21-person research team at IIT Bombay. Rejecting generic SaaS dashboards and impersonal tech aesthetics, the design system evokes the tactile, unhurried warmth of an Indian institutional canteen: rich handmade paper surfaces, terracotta and burnt spice accents, crisp typographic hierarchy, and authentic Indian culinary marks (green and red diet indicators, tabular Indian rupee formatting). It balances swift, single-thumb phone ordering during short lunch breaks with a utilitarian administrative command center.
+IPT FoodHub is a private, warm Indian canteen-inspired lunch ordering web app built for a 21-person research team at IIT Bombay. Rejecting generic SaaS dashboards and impersonal tech aesthetics, the design system evokes the tactile, unhurried warmth of an Indian institutional canteen: rich handmade paper surfaces, terracotta and burnt spice accents, crisp typographic hierarchy, and authentic Indian culinary marks (green and red diet indicators, tabular Indian rupee formatting). It balances swift, single-thumb phone ordering during short lunch breaks with a utilitarian administrative command center.
 
 ## Colors
 
 The palette strictly adopts Apple Human Interface Guidelines (HIG) system colors:
+
 - **Surface & Ground:** Apple system grouped background (`#F2F2F7`) with pure elevated card surfaces (`#FFFFFF`) and tertiary fills (`#E5E5EA`).
 - **Ink & Typography:** Apple system label primary ink (`#1C1C1E`) paired with secondary label (`#8E8E93`) and tertiary label (`#C7C7CC`).
 - **Primary Tint:** Apple signature System Blue (`#0071E3` / `#007AFF`) for interactive accents, primary buttons, and selected tabs.
@@ -177,6 +178,7 @@ motion:
 ## Voice & Content Strategy
 
 Direct, calm, collegiate Indian canteen tone. Concise labels and Indian numbering (`₹1,234.50`). Distinct statuses:
+
 - "Saving...", "Saved", "Could not save — Retry save"
 - "Not placed yet — press Place order again"
 - "✓ Order placed at 10:31 PM"

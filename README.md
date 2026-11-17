@@ -1,4 +1,4 @@
-# IPT APC food
+# IPT FoodHub
 
 Order lunch with the team. Prices already include GST. A draft on your phone is not an order until you press **Place order**.
 
@@ -26,7 +26,7 @@ From this folder, with the [Firebase CLI](https://firebase.google.com/docs/cli) 
 ```bash
 npm install -g firebase-tools
 firebase login
-firebase projects:create ipt-apc-food --display-name "IPT APC food"
+firebase projects:create ipt-apc-food --display-name "IPT FoodHub"
 firebase use ipt-apc-food
 ```
 
@@ -36,7 +36,7 @@ Turn on email sign-in in the console: Authentication → Sign-in method → Emai
 
 ```bash
 firebase firestore:databases:create "(default)" --location asia-south1 --project ipt-apc-food
-firebase apps:create web "IPT APC food" --project ipt-apc-food
+firebase apps:create web "IPT FoodHub" --project ipt-apc-food
 firebase apps:sdkconfig web --project ipt-apc-food
 ```
 
@@ -63,4 +63,5 @@ Vite 7 prints a warning on Node 20.18. The build still completes. Node 20.19 or 
 `firebase deploy` also runs the production build before upload. The admin email in `src/lib/constants.ts` and `firestore.rules` must stay the same.
 
 Menu prices live in `src/data/menu.json` and should not be edited.
+
 # logistics-food

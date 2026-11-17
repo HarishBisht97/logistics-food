@@ -38,7 +38,7 @@ export function LoginPage({
       >
         <img src={logo} alt="" className="mx-auto h-16 w-16 object-contain" />
         <h1 className="mt-3 text-center text-2xl font-bold tracking-tight">
-          IPT APC food
+          IPT FoodHub
         </h1>
         <label className="mt-8 block text-sm font-semibold">
           Email
